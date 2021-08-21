@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-
+import {getTasks} from './api';
 
 export const TaskList = () => {
     const [items, setItems] = useState([]);
     
     useEffect(()=>{
-        setItems([
-            {text: "foo", des: "abc", id: 0},
-            { text: "bar", des: "abc", id: 1 },
-            { text: "fuz", des: "abc", id: 2 },
-        ])
+        const fetchItems = async () =>{
+            const tasks = await getTasks();
+            setItems(tasks);
+        }
+        fetchItems();
     }, [])
 
     return (

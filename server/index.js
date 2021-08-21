@@ -17,18 +17,7 @@ mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskd
     useNewUrlParser: true,
 });
 
-//create
-app.post('/insert', async (req, res) => {
-    const taskName = req.body.taskName;
-    const task = new taskModel({taskName: taskName});
-    try{
-        await task.save();
-        res.send("inserted data");
-    }
-    catch(err){
-        console.log(err);
-    }
-});
+
 //read
 app.get('/read', async (req, res) => {
     taskModel.find({}, (err, result) => {
@@ -39,6 +28,31 @@ app.get('/read', async (req, res) => {
         res.send(result);
     });
 });
+//create
+app.post('/insert', async (req, res) => {
+    const taskName = req.body.taskName;
+    const taskDescription = req.body.taskDescription;
+    const task = new taskModel({taskName: taskName, taskDescription: taskDescription});
+    try{
+        await task.save();
+        res.send("inserted data");
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
+// get id
+app.get("/:id",(req, res)=>{
+    const id = req.params.id;
+    taskModel.findById(id, (err, result)=>{
+        res.json(result);
+    })
+})
+
+
+
+
 //update
 app.put("/update", async (req, res) => {
 
@@ -57,6 +71,7 @@ app.put("/update", async (req, res) => {
     }
 });
 
+//delete
 
 
 
