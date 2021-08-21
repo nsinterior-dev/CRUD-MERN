@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskd
     useNewUrlParser: true,
 });
 
-
+//create
 app.post('/insert', async (req, res) => {
     const taskName = req.body.taskName;
     const task = new taskModel({taskName: taskName});
@@ -29,7 +29,7 @@ app.post('/insert', async (req, res) => {
         console.log(err);
     }
 });
-
+//read
 app.get('/read', async (req, res) => {
     taskModel.find({}, (err, result) => {
         if (err) {
@@ -39,6 +39,28 @@ app.get('/read', async (req, res) => {
         res.send(result);
     });
 });
+//update
+app.put("/update", async (req, res) => {
+
+    const newTaskName = req.body.newTaskName;
+    const id = req.body.id;
+
+    try {
+        await taskModel.findById(id, (err, updatedList) => {
+            updatedList.taskName = newTaskName;
+            updatedList.save();
+            res.send("update");
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
+
+
+
+
 
 // initializes port 3001
 app.listen(4000, () => {
