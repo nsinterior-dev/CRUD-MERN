@@ -7,6 +7,7 @@
 }
 
 h1,
+h2,
 p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #105266;
@@ -105,11 +106,65 @@ p {
 }
 
 .ReactModal__Content {
-  height: 400px;
+  height: 220px;
   width: 400px;
   position: relative !important;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.modal-header {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.closebtn {
+  font-size: 30px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #105266;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.taskEdit {
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  width: 90%;
+  color: #105266;
+}
+
+.delete,
+.save {
+  position: relative;
+  top: 30px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 14px;
+  width: 180px;
+  display: inline-flex;
+  justify-content: space-around;
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.save {
+  left: 27px;
+  background-color: rgb(28, 109, 28);
+
+}
+
+.delete {
+  background-color: rgb(160, 31, 31);
 }

@@ -14,8 +14,6 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
  
- 
- 
 
   useEffect(()=>{
     axios.get("http://localhost:4000/read").then((response)=>{
@@ -52,23 +50,25 @@ function App() {
          
         </Container >
 
-          <Modal isOpen={modalIsOpen} 
-                 onRequestClose={()=>setModalIsOpen(false)
-          }>
-            <div className="modal-header">
-            <h2>Edit Task</h2>
-            <button onClick={() => setModalIsOpen(false)}>&times;</button>
-            </div>
-            
-                <Form>
-                  <input type="text" className="taskEdit" placeholder="Edit the task..."/>
-                  <button  >Delete</button>
-                  <button >Save</button>
 
-                </Form>
           
-          
-          </Modal>
+            <Modal isOpen={modalIsOpen}
+              onRequestClose={() => setModalIsOpen(false)} >
+              <div className="modal-header">
+                <h2>Edit Task</h2>
+                <button className="closebtn" onClick={() => setModalIsOpen(false)}>&times;</button>
+              </div>
+
+              <Form>
+                <input type="text" className="taskEdit" placeholder="Edit this task" />
+                <button className="delete" >Delete</button>
+                <button className="save">Save</button>
+
+              </Form>
+
+
+            </Modal>
+        
 
 
 
