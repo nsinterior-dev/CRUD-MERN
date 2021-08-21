@@ -1,10 +1,12 @@
-export const getTasks = () => fetch("http://localhost:4000").then(res => res.json);
+export const getTasks = () => 
+    fetch("http://localhost:3001").then(res => res.json());
 
-export const createTask = (task) => fetch("http://localhost:4000/create",{
+export const createTask = (task) => 
+    fetch("http://localhost:/create",{
     method: "POST",
     headers: {
-        "Accept" : "application/json",
-        "Content-Type":"application/json"
+        Accept : 'application/json',
+        'Content-Type':'application/json'
     },
-    body: JSON.stringify(task)
+    body: JSON.stringify(task),
 });

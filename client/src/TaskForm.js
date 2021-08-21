@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+
 
 
 export const TaskForm = ({task, onSubmit}) => {
     const { register, handleSubmit } = useForm({
-        defaultValues: { text: task ? task.text : "" },
+        defaultValues: { 
+            text: task ? task.text : "" ,
+            description: task ? task.description : "",
+        },
     });
-    const history = useHistory();
+
 
 
     const submitHandler = handleSubmit((data) => {
         onSubmit(data);
-        history.push("/");
+
     });
 
 
@@ -22,11 +25,9 @@ export const TaskForm = ({task, onSubmit}) => {
                     <div className="form-group">
                         <label htmlFor="text">Text</label>
                         <input className="form-control" {...register('text', { required: true })} type="text" name="text" id="text" />
-                    </div>
-                    
-                    <div className="form-group">
-                        <label htmlFor="text">Description</label>
-                        <input className="form-control" {...register('text', { required: true })} type="text" name="text" id="text" />
+                   
+                        <label htmlFor="description">Description</label>
+                        <input className="form-control" {...register('description', { required: true })} type="text" name="description" id="description" />
                     </div>
 
                     <div className="form-group">

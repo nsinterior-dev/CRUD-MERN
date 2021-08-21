@@ -10,7 +10,7 @@ export const TaskList = () => {
             const tasks = await getTasks();
             setItems(tasks);
         }
-        fetchItems();
+        fetchItems()
     }, [])
 
     return (
@@ -27,16 +27,16 @@ export const TaskList = () => {
                     </thead>
                     <tbody>
                         {
-                            items.map(task=> (
-                                <tr key={task.id}>
+                            items.map(task => (
+                                <tr key={task._id}>
                                     <td>
                                         {task.text}
                                     </td>
                                     <td>
-                                        {task.des}
+                                        {task.description}
                                     </td>
                                     <td>
-                                        <Link to={`/edit/${task.id}`}>Edit</Link>
+                                        <Link to={`/edit/${task._id}`}>Edit</Link>
                                     </td>
                                     
                                 </tr>

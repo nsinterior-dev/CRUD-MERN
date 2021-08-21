@@ -1,11 +1,15 @@
 import React from 'react';
 import { TaskForm } from './TaskForm';
 import { createTask } from './api';
+import { useHistory } from 'react-router-dom';
+
 
 export const CreateList = () => {
+    const history = useHistory();
 
-    const onSubmit = (data)=>{
-        alert(JSON.stringify(data));
+    const onSubmit = async (data)=>{
+     await createTask(data);
+     history.push("/");
     };
 
     

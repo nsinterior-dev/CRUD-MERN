@@ -16,37 +16,38 @@ app.use(cors());
 mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskdb?retryWrites=true&w=majority', {
     useNewUrlParser: true,
 });
-
+mongoose.connection.once('open', ()=>{
+    console.log('Mongodb connection established successfully');
+})
 
 //read
-app.get('/read', async (req, res) => {
-    taskModel.find({}, (err, result) => {
+app.get('/', async (req, res) => {
+    taskModel.find({}, (err, task) => {
         if (err) {
             res.send(err);
         }
 
-        res.send(result);
+        res.send(task);
     });
 });
 //create
-app.post('/insert', async (req, res) => {
-    const taskName = req.body.taskName;
-    const taskDescription = req.body.taskDescription;
-    const task = new taskModel({taskName: taskName, taskDescription: taskDescription});
-    try{
-        await task.save();
-        res.send("inserted data");
-    }
-    catch(err){
-        console.log(err);
-    }
+app.post('/create', (req, res) => {
+    const taskModel = new taskModel(req.body);
+    taskModel
+        .save()
+        .then((taskModel)=>{
+        res.json(taskModel);
+    })
+    .catch((err)=>{
+        res.status(500).send(err.message);
+    })
 });
 
 // get id
 app.get("/:id",(req, res)=>{
     const id = req.params.id;
-    taskModel.findById(id, (err, result)=>{
-        res.json(result);
+    taskModel.findById(id, (err, task)=>{
+        res.json(task);
     })
 })
 
@@ -78,6 +79,6 @@ app.put("/update", async (req, res) => {
 
 
 // initializes port 3001
-app.listen(4000, () => {
+app.listen(3001, () => {
     console.log(`Server started on port 4000`);
 });
