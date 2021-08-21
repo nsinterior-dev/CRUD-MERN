@@ -9,6 +9,10 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    taskDescription : {
+        type: String,
+        required: true,
+    }
 });
 
 const Task = mongoose.model("tasks", taskSchema);

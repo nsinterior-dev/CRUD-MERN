@@ -24,8 +24,8 @@ function App() {
       </nav>
       <Switch>
         <Route path="/" component={TaskList} exact/>
-        <Route path="/edit:/id" component={EditList} />
-        <Route  path="/create" component={CreateList} />
+        <Route path="/edit/:id" component={EditList} exact/>
+        <Route  path="/create" component={CreateList} exact/>
 
       </Switch>
     </div>
