@@ -4,6 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form'
 import { AiFillEdit } from "react-icons/ai";
 import './App.css';
 
@@ -11,8 +12,20 @@ import './App.css';
 
 function App() {
   const [taskName, setTaskName] = useState("");
+  const [todoList, setTodoList] = useState([]);
 
 
+  useEffect(()=>{
+    axios.get("http://localhost:4000/read").then((response)=>{
+      setTodoList(response.data);
+    });
+  }, []);
+
+  const addToList = () =>{
+    axios.post("http://localhost:4000/insert", {
+      taskName : taskName,
+    });
+  };
 
   return (
     
@@ -26,23 +39,15 @@ function App() {
         <Container className="todoListContainer">
           <Row>
             <Col lg={12} className="todoList">
-              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
-            </Col>
-            <Col lg={12} className="todoList">
-              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
-            </Col>
-            <Col lg={12} className="todoList">
-              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
-            </Col>
-            <Col lg={12} className="todoList">
-              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
+              <p>task..</p> <button className="edit"><AiFillEdit /></button>
             </Col>
           </Row>
         </Container >
-        <div className="formTask">
-          <input type="text" className="taskCreate" placeholder="Create a task..." />
-          <button className="addTask">+</button>
-        </div>
+        <Form className="form-control">
+          <input type="text" className="taskCreate" placeholder="Create a task..." 
+          onChange={(event)=>{setTaskName(event.target.value)}} />
+          <button className="addTask" onClick={addToList}>+</button>
+        </Form>
         
       </Container>
     </div>

@@ -20,7 +20,7 @@ mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskd
 
 app.post('/insert', async (req, res) => {
     const taskName = req.body.taskName;
-    const task = new taskModel({taskName: 'task 1'});
+    const task = new taskModel({taskName: taskName});
     try{
         await task.save();
         res.send("inserted data");
@@ -37,10 +37,10 @@ app.get('/read', async (req, res) => {
         }
 
         res.send(result);
-    })
-})
+    });
+});
 
 // initializes port 3001
-app.listen(3001, () => {
-    console.log(`Server started on port 3001`);
+app.listen(4000, () => {
+    console.log(`Server started on port 4000`);
 });

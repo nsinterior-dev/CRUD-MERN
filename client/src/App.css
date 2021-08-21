@@ -1,5 +1,8 @@
 .App {
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -26,6 +29,8 @@ p {
   bottom: 0;
   padding: 12px;
   border: solid 1px grey;
+  justify-content: center;
+  align-items: center;
 }
 
 .todoListContainer {
@@ -55,25 +60,35 @@ p {
   margin: 5px;
 }
 
-.formTask {
-  width: 90%;
+.form-control {
+  margin: 0;
+  width: 80%;
   position: fixed;
+  transform: translateX(10%);
+  left: 0;
+  right: 0;
   bottom: 0;
   border: blue solid 1px;
   padding: 16px;
   display: flex;
+  flex: 1;
+  flex-wrap: wrap;
   flex-direction: row;
+  align-self: center;
+  align-items: center;
   justify-content: space-around;
+  color: #105266;
 }
 
-.taskCreate{
+.taskCreate {
   padding: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   width: 80%;
+  color: #105266;
 }
 
-.addTask{
+.addTask {
   width: 45px;
   height: 45px;
   font-size: 20px;
