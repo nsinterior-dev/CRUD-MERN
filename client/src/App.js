@@ -17,15 +17,33 @@ function App() {
   return (
     
     <div className="App">
-      <Container>
-          <Row>
+      <Container className="wrapper">
+         <Row>
             <Col lg={12} className="header">
               <h1>To Do List</h1>
             </Col>
+          </Row>
+        <Container className="todoListContainer">
+          <Row>
             <Col lg={12} className="todoList">
-            <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
+              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
+            </Col>
+            <Col lg={12} className="todoList">
+              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
+            </Col>
+            <Col lg={12} className="todoList">
+              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
+            </Col>
+            <Col lg={12} className="todoList">
+              <p>Task 1</p> <button className="edit"><AiFillEdit /></button>
             </Col>
           </Row>
+        </Container >
+        <div className="formTask">
+          <input type="text" className="taskCreate" placeholder="Create a task..." />
+          <button className="addTask">+</button>
+        </div>
+        
       </Container>
     </div>
   );

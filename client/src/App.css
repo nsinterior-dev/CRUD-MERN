@@ -3,15 +3,20 @@
   justify-content: center;
 }
 
-h1, p {
+h1,
+p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #105266;
 }
-.row, .header{
+
+.row,
+.header {
   border-bottom: solid 1px #105266;
 }
-.container {
+
+.wrapper {
   width: 50%;
+  height: 600px;
   transform: translateX(50%);
   margin: 0;
   position: relative;
@@ -23,13 +28,24 @@ h1, p {
   border: solid 1px grey;
 }
 
-.todoList{
+.todoListContainer {
+  width: 95%;
+  height: auto;
+  margin: 0;
+  position: relative;
+  padding: 12px;
+  border: none;
+  outline: none;
+}
+
+.todoList {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: solid 1px grey;
 }
 
-.edit{
+.edit {
   font-size: 25px;
   background-color: transparent;
   border: none;
@@ -37,4 +53,30 @@ h1, p {
   color: #105266;
   cursor: pointer;
   margin: 5px;
+}
+
+.formTask {
+  width: 90%;
+  position: fixed;
+  bottom: 0;
+  border: blue solid 1px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.taskCreate{
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  width: 80%;
+}
+
+.addTask{
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  color: #105266;
+  border-radius: 50%;
 }
