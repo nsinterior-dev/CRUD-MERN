@@ -28,7 +28,6 @@ function App() {
   };
 
   return (
-    
     <div className="App">
       <Container className="wrapper">
          <Row>
@@ -37,11 +36,16 @@ function App() {
             </Col>
           </Row>
         <Container className="todoListContainer">
-          <Row>
-            <Col lg={12} className="todoList">
-              <p>task..</p> <button className="edit"><AiFillEdit /></button>
-            </Col>
-          </Row>
+          {todoList.map((val, key) => {
+            return (
+              <Row key={key}>
+                <Col lg={12} className="todoList">
+                  <p>{val.taskName}</p> <button className="edit"><AiFillEdit /></button>
+                </Col>
+              </Row>
+            );
+          })}
+          
         </Container >
         <Form className="form-control">
           <input type="text" className="taskCreate" placeholder="Create a task..." 
