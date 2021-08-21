@@ -1,10 +1,10 @@
 // import stuff to call some stuff
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 
 
 
-export const editList = () => {
+export const EditList = () => {
     return (
         <div className="container">Edit List</div>
     );

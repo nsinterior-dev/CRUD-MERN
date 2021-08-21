@@ -1,9 +1,9 @@
 // import stuff to call some stuff
 import React from 'react';
 import {Route, Switch, Link} from 'react-router-dom';
-import {taskList} from './Task';
-import { editList } from './Edit';
-import { createList } from './Create';
+import {TaskList} from './Task';
+import { EditList } from './Edit';
+import { CreateList } from './Create';
 
 import './App.css';
 
@@ -23,9 +23,9 @@ function App() {
           </ul>
       </nav>
       <Switch>
-        <Route path="/" component={taskList} exact/>
-        <Route path="/edit:/id" component={editList} />
-        <Route  path="/create" component={createList} />
+        <Route path="/" component={TaskList} exact/>
+        <Route path="/edit:/id" component={EditList} />
+        <Route  path="/create" component={CreateList} />
 
       </Switch>
     </div>
