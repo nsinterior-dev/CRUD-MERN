@@ -1,7 +1,16 @@
 .App {
-  text-align: center;
+  text-align: left;
+  justify-content: center;
 }
-.container{
+
+h1, p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #105266;
+}
+.row, .header{
+  border-bottom: solid 1px #105266;
+}
+.container {
   width: 50%;
   transform: translateX(50%);
   margin: 0;
@@ -11,7 +20,21 @@
   right: 0;
   bottom: 0;
   padding: 12px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #105266;
   border: solid 1px grey;
+}
+
+.todoList{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit{
+  font-size: 25px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #105266;
+  cursor: pointer;
+  margin: 5px;
 }
