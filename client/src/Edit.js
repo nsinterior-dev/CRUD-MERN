@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { TaskForm } from './TaskForm';
+import { useRouteMatch, useHistory } from 'react-router-dom';
+import { updateTask, getTask } from './api';
+
 
 export const EditList = () => {
+    const match = useRouteMatch();
     const [task, setTask] = useState();
 
     useEffect(() => {
-        setTask({
-            text: "foo"
-        })
-    }, [])
+        const fetchTask = async () => {
+            const task = await getTask(match.params.id);
+            setTask(task);
+        }
+        fetchTask();
+    }, []);
 
+    const history = useHistory();
     const onSubmit = (data) =>{
-        alert(JSON.stringify(data));
+        await updateTask(data, match.params.id);
+        history.push("/");
     }
 
 
