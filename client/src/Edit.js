@@ -17,10 +17,10 @@ export const EditList = () => {
     }, []);
 
     const history = useHistory();
-    const onSubmit = (data) =>{
+    const onSubmit = async (data) =>{
         await updateTask(data, match.params.id);
         history.push("/");
-    }
+    };
 
 
     return task ? (
