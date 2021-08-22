@@ -2,17 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('Cors');
+const PORT = 3001;
 // app variable is needed to reference variable express that requires express.js
 const app = express();
-
-const PORT = 3001;
-
 //calling the schema tasks.js\\
 const taskModel = require('./models/Tasks');
 
-// this line to call the schema for database
-app.use(express.json());
-app.use(cors());
 
 //initialize connection with the databasse
 mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskdb?retryWrites=true&w=majority', {
@@ -21,6 +16,11 @@ mongoose.connect('mongodb+srv://admin:testpw1234@crudapp.agmbf.mongodb.net/taskd
 mongoose.connection.once('open', ()=>{
     console.log('Mongodb connection established successfully');
 })
+
+// this line to call the schema for database
+app.use(express.json());
+app.use(cors());
+
 
 //read
 app.get('/', async (req, res) => {
@@ -32,13 +32,14 @@ app.get('/', async (req, res) => {
         res.send(task);
     });
 });
+
 //create
 app.post('/create', (req, res) => {
-    const tasks = new taskModel(req.body);
-    tasks
+    const Tasks = new taskModel(req.body);
+    Tasks
         .save()
-        .then((tasks)=>{
-        res.json(tasks);
+        .then((Tasks)=>{
+        res.json(Tasks);
     })
     .catch((err)=>{
         res.status(500).send(err.message);
@@ -53,29 +54,23 @@ app.get("/:id",(req, res)=>{
     })
 })
 
-
-
-
 //update
-app.put("/update", async (req, res) => {
-
-    const newTaskModel = req.body.newTaskModel;
-    const id = req.body.id;
-
-    try {
-        await taskModel.findById(id, (err, updatedList) => {
-            updatedList.taskModel = newTaskModel;
-            updatedList.save();
-            res.send("update");
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
+app.post('/:id', (req, res) => {
+    const id = req.params.id;
+    taskModel.findById(id, (err, task) => {
+        if(!task) res.status(404).send('Task not found');
+        else {
+            task.text = req.body.text;
+            task.description = req.body.description;
+            task 
+                .save()
+                .then((task) => {
+                    res.json(task);
+                })
+                .catch((err) => res.status(500).send(err.message));
+        }
+    });
 });
-
-//delete
-
 
 
 
