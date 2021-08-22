@@ -5,6 +5,8 @@ const cors = require('Cors');
 // app variable is needed to reference variable express that requires express.js
 const app = express();
 
+const PORT = 3001;
+
 //calling the schema tasks.js\\
 const taskModel = require('./models/Tasks');
 
@@ -32,11 +34,11 @@ app.get('/', async (req, res) => {
 });
 //create
 app.post('/create', (req, res) => {
-    const taskModel = new taskModel(req.body);
-    taskModel
+    const tasks = new taskModel(req.body);
+    tasks
         .save()
-        .then((taskModel)=>{
-        res.json(taskModel);
+        .then((tasks)=>{
+        res.json(tasks);
     })
     .catch((err)=>{
         res.status(500).send(err.message);
@@ -57,12 +59,12 @@ app.get("/:id",(req, res)=>{
 //update
 app.put("/update", async (req, res) => {
 
-    const newTaskName = req.body.newTaskName;
+    const newTaskModel = req.body.newTaskModel;
     const id = req.body.id;
 
     try {
         await taskModel.findById(id, (err, updatedList) => {
-            updatedList.taskName = newTaskName;
+            updatedList.taskModel = newTaskModel;
             updatedList.save();
             res.send("update");
         });
@@ -79,6 +81,6 @@ app.put("/update", async (req, res) => {
 
 
 // initializes port 3001
-app.listen(3001, () => {
-    console.log(`Server started on port 4000`);
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });
